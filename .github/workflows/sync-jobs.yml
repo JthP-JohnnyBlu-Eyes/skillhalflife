@@ -1,0 +1,25 @@
+name: Sync job scores
+
+# Every Monday, after the Job Exposure Index refresh: copies its public job list
+# (title, slug, score) into public/data/jobs.json and commits when it changed. Cloudflare deploys the push.
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -fsSL https://jobexposureindex.com/data/jobs.json -o public/data/jobs.json
+      - name: Commit if changed
+        run: |
+          git add public/data/jobs.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git -c user.name="skillhalflife-bot" -c user.email="actions@users.noreply.github.com" commit -m "Sync job scores from the Job Exposure Index"
+          git push
