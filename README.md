@@ -8,7 +8,7 @@ The site is plain static HTML, served by a Cloudflare Worker like the Job Exposu
 
 ## Setup
 
-1. **Kit waitlist form.** In Kit, create a new form called "SkillHalfLife waitlist" (separate from the JEI weekly report form) and a custom field called `job`. Put the form's number in place of `WAITLIST_FORM_ID` in `public/index.html` (two places). Until then the signup boxes say the waitlist opens soon.
+1. **Kit waitlist form.** Signups go to Kit form 10104914 ("SkillHalfLife waitlist", separate from the JEI weekly report form). To use another form, change that number in `public/index.html` (two places). Add a Kit custom field called `job` to record which JEI job page a signup came from.
 2. **Deploy.** In Cloudflare, go to Workers & Pages, Create, Import a repository, and pick this repo. Every push to `main` then deploys.
 3. **Email.** Turn on Cloudflare Email Routing for skillhalflife.com and forward `hello@skillhalflife.com` to your inbox.
 4. **Analytics.** In Cloudflare, open Web Analytics, add skillhalflife.com and choose the automatic setup. It is free and uses no cookies.
