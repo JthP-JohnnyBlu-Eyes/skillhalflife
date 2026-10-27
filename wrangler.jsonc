@@ -1,0 +1,14 @@
+{
+  "name": "skillhalflife",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "routes": [
+    { "pattern": "skillhalflife.com", "custom_domain": true },
+    { "pattern": "www.skillhalflife.com", "custom_domain": true }
+  ]
+}
